@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react"
 import { getAllJokes } from "./services/jokeService.jsx";
 import { handleAddJoke } from "./JokeButton.jsx";
-// import { transientState } from "./TransientState.jsx"
+import { transientState } from "./TransientState.jsx"
   
 
 
@@ -11,12 +11,26 @@ export const App = () => {
   const [allJokes, setAllJokes] = useState([]);
   const [jokeInput, setJokeInput] = useState("");
 
-  useEffect(() => {
-    getAllJokes().then((jokesArray) => {
-        setAllJokes(jokesArray);
-        console.log("jokes set!")
-    })
-  }, [])
+  // useEffect(() => {
+  //   getAllJokes().then((jokesArray) => {
+  //       setAllJokes(jokesArray);
+  //       console.log("jokes set!")
+  //   })
+  // }, [])
+
+  useEffect (() => {
+    if (jokeInput.length != 0) {
+      const postJoke = {
+        method: "POST",
+        headers: {
+                  "Content-Type": "application/json"
+              },
+        body: JSON.stringify(setJokeInput(jokeInput))
+      }
+      fetch("http://localhost:8088/jokes", postJoke)
+    }
+}, [jokeInput])
+
 
 
   return (
@@ -26,7 +40,7 @@ export const App = () => {
     className="input-box"
     type="text"
     placeholder="New One Liner"
-    value={jokeInput}
+    // value={transientState.text}
     onChange={(event) => {
       // What's the value of event?
       setJokeInput(event.target.value)
