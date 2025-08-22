@@ -16,11 +16,12 @@ export const postJokes = async (jokeInput) => {
         }
         const response = await fetch("http://localhost:8088/jokes", postInput)    
     console.log(jokeData)
+    } else {
+        console.log("Need input to save joke")
     }
-
+    
 }
 
 export const handleAddJoke = async (jokeInput) => {
         const jokes = await postJokes(jokeInput)
-        // const jsonString = JSON.stringify(jokes)
 }

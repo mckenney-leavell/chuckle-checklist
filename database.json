@@ -24,11 +24,6 @@
       "id": 5,
       "text": "I failed math so many times at school, I can’t even count",
       "told": true
-    },
-    {
-      "text": "hello",
-      "told": false,
-      "id": 6
     }
   ]
 }

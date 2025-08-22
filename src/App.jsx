@@ -17,21 +17,6 @@ export const App = () => {
   //   })
   // }, [])
 
-//   useEffect (() => {
-//     if (jokeInput.length != 0) {
-//       const postJoke = {
-//         method: "POST",
-//         headers: {
-//                   "Content-Type": "application/json"
-//               },
-//         body: JSON.stringify(setJokeInput(jokeInput))
-//       }
-//       fetch("http://localhost:8088/jokes", postJoke)
-//     }
-// }, [jokeInput])
-
-
-
   return (
   <div className="jokes-container">
     <h2>Hello World!</h2>
@@ -39,15 +24,16 @@ export const App = () => {
     className="input-box"
     type="text"
     placeholder="New One Liner"
-    // value={transientState.text}
+    value={jokeInput}
     onChange={(event) => {
       // What's the value of event?
       setJokeInput(event.target.value)
     }}
     />
-    <button className="add-joke" onClick={() =>
+    <button className="add-joke" onClick={() => {
         handleAddJoke(jokeInput)
-    }>Add</button>
+        setJokeInput("")
+    }}>Add</button>
     </div>)
 }
 
